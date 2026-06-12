@@ -98,9 +98,9 @@ export default function Hero({ splash = false }: { splash?: boolean }) {
             variants={item}
             className="mt-6 max-w-xl mx-auto md:mx-0 font-serif text-base sm:text-lg text-[#4B5563]"
           >
-            Building things at the intersection of intelligent systems and
-            thoughtful interfaces. Currently exploring machine learning,
-            distributed systems, and the craft of well-made software.
+            Building AI-powered applications with Python and modern web technologies. 
+            Currently exploring machine learning, software engineering, 
+            and the art of creating useful digital experiences.
           </motion.p>
           <motion.div
             variants={item}
