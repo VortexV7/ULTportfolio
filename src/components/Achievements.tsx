@@ -12,7 +12,7 @@ const catColors: Record<Cat, string> = {
 const items: { title: string; desc: string; cat: Cat; date: string }[] = [
   {
     title: "B.Tech Computer Engineering",
-    desc: "Pursuing Computer Engineering with interests in web development, machine learning, and software engineering.",
+    desc: "Pursuing Computer Engineering with interests in web development, artificial intelligence, and software engineering.",
     cat: "ACADEMIC",
     date: "2023–Present",
   },
@@ -23,8 +23,8 @@ const items: { title: string; desc: string; cat: Cat; date: string }[] = [
     date: "2026",
   },
   {
-    title: "Machine Learning Projects",
-    desc: "Implemented machine learning projects involving data preprocessing, model training, and evaluation techniques.",
+    title: "AI & RAG Projects",
+    desc: "Built AI-powered applications using Retrieval-Augmented Generation (RAG), vector databases, LLMs, and document-based knowledge systems.",
     cat: "PROJECT",
     date: "2025–2026",
   },
@@ -41,8 +41,8 @@ const items: { title: string; desc: string; cat: Cat; date: string }[] = [
     date: "2025–2026",
   },
   {
-    title: "Machine Learning Coursework",
-    desc: "Studied neural networks, supervised learning, and model evaluation through academic and practical projects.",
+    title: "Oracle Certifications",
+    desc: "Earned Oracle Cloud Infrastructure 2025 AI Foundations Associate and Oracle Certified Generative AI Professional certifications.",
     cat: "CERTIFICATION",
     date: "2025",
   },
