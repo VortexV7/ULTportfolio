@@ -107,7 +107,8 @@ export default function Hero({ splash = false }: { splash?: boolean }) {
             className="mt-8 flex flex-wrap justify-center md:justify-start gap-3"
           >
             <a
-              href="#"
+              href="/public/resume/Ved_Sharanagate_Resume.pdf"
+              target="_blank"
               className="inline-flex items-center gap-2 bg-[#FF5722] text-white font-sans font-medium px-5 py-3 rounded-lg hover:bg-[#E64A19] transition-colors cursor-pointer"
             >
               <Download size={16} /> Download Resume
