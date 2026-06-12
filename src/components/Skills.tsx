@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const groups = [
   { title: "Languages", items: ["C++", "Python", "JavaScript", "TypeScript", "Java"] },
-  { title: "Frontend", items: ["React", "Next.js", "Tailwind CSS", "HTML/CSS"] },
+  { title: "Frontend", items: ["React", "Electron.js", "Next.js", "Tailwind CSS", "HTML/CSS"] },
   { title: "Backend", items: ["Node.js"] },
   { title: "Databases", items: ["MySQL", "Supabase"] },
   { title: "Tools", items: ["Git", "VS Code", "Figma", "Linux"] },
