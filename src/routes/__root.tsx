@@ -11,6 +11,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { siteConfig } from "../lib/site";
+import faviconUrl from "../assets/favicon.svg?url";
+import socialPreviewUrl from "../assets/og-thumbnail.svg?url";
 
 function NotFoundComponent() {
   return (
@@ -77,17 +80,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: siteConfig.shortTitle },
+      { name: "description", content: siteConfig.description },
+      { name: "author", content: siteConfig.name },
+      { name: "keywords", content: siteConfig.keywords },
+      { name: "robots", content: "index, follow" },
+      { name: "theme-color", content: siteConfig.themeColor },
+      { property: "og:site_name", content: siteConfig.name },
+      { property: "og:title", content: siteConfig.title },
+      { property: "og:description", content: siteConfig.socialDescription },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:image", content: socialPreviewUrl },
+      { property: "og:image:alt", content: `${siteConfig.name} portfolio preview` },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: siteConfig.title },
+      { name: "twitter:description", content: siteConfig.socialDescription },
+      { name: "twitter:image", content: socialPreviewUrl },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: faviconUrl, type: "image/svg+xml" },
+      { rel: "shortcut icon", href: faviconUrl, type: "image/svg+xml" },
+      { rel: "apple-touch-icon", href: faviconUrl },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

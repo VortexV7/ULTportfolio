@@ -4,7 +4,7 @@ import { ArrowDown, Download, Mail } from "lucide-react";
 import AnimatedBackground from "./AnimatedBackground";
 import profileImage from "../assets/Ved_Sharanagate.jpg";
 
-const roles = ["Computer Engineering Student", "AI Enthusiast", "Full Stack Developer"];
+const roles = ["Computer Engineering Student", "AI Enthusiast", "Full Stack Developer", "Vibe Coder"];
 
 function useTypewriter() {
   const [idx, setIdx] = useState(0);

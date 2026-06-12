@@ -12,14 +12,20 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import ScrollToTop from "@/components/ScrollToTop";
 import SplashScreen from "@/components/SplashScreen";
+import socialPreviewUrl from "@/assets/og-thumbnail.svg?url";
+import { siteConfig } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ved's Portfolio" },
-      { name: "description", content: "Personal portfolio of Ved Sharanagate — a Computer Engineering student building at the intersection of ML and full-stack development." },
-      { property: "og:title", content: "Ved Sharanagate — Portfolio" },
-      { property: "og:description", content: "Projects, skills, and achievements of a Computer Engineering student passionate about software craft." },
+      { title: siteConfig.title },
+      { name: "description", content: siteConfig.description },
+      { property: "og:title", content: siteConfig.title },
+      { property: "og:description", content: siteConfig.socialDescription },
+      { property: "og:image", content: socialPreviewUrl },
+      { name: "twitter:title", content: siteConfig.title },
+      { name: "twitter:description", content: siteConfig.socialDescription },
+      { name: "twitter:image", content: socialPreviewUrl },
     ],
   }),
   component: Index,

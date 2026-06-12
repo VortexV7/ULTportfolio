@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title>Ved Sharanagate portfolio social preview</title>
+  <desc>Social share image for Ved Sharanagate's portfolio website.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#FDFDFD" />
+      <stop offset="100%" stop-color="#F5F2EC" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF5722" />
+      <stop offset="100%" stop-color="#E64A19" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="1010" cy="160" r="180" fill="#FF5722" opacity="0.09" />
+  <circle cx="180" cy="540" r="180" fill="#111827" opacity="0.05" />
+  <rect x="78" y="78" width="1044" height="474" rx="36" fill="#111827" />
+  <rect x="114" y="114" width="972" height="402" rx="28" fill="#161F2D" />
+  <rect x="114" y="114" width="972" height="402" rx="28" fill="none" stroke="#2A3445" />
+  <circle cx="1018" cy="184" r="16" fill="#FF5722" />
+  <text x="154" y="188" fill="#FF5722" font-family="Courier New, monospace" font-size="28" font-weight="700" letter-spacing="5">
+    AVAILABLE FOR OPPORTUNITIES
+  </text>
+  <text x="154" y="286" fill="#FDFDFD" font-family="Georgia, 'Times New Roman', serif" font-size="76" font-weight="700">
+    Ved Sharanagate
+  </text>
+  <text x="154" y="354" fill="#FFB199" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700">
+    Full Stack Developer and ML Enthusiast
+  </text>
+  <text x="154" y="430" fill="#CBD5E1" font-family="Georgia, 'Times New Roman', serif" font-size="30">
+    Building thoughtful interfaces, intelligent systems,
+  </text>
+  <text x="154" y="470" fill="#CBD5E1" font-family="Georgia, 'Times New Roman', serif" font-size="30">
+    and software projects with strong engineering craft.
+  </text>
+  <rect x="154" y="494" width="274" height="16" rx="8" fill="url(#accent)" />
+  <rect x="448" y="494" width="160" height="16" rx="8" fill="#334155" />
+</svg>
