@@ -73,15 +73,16 @@ export default function Navbar({ splash: _splash = false }: { splash?: boolean }
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
             className="md:hidden overflow-hidden border-t border-[#E5E7EB] bg-white"
           >
-            <div className="flex flex-col px-6 py-4 gap-4">
+            <div className="flex flex-col px-6 py-2">
               {links.map((l) => (
                 <button
                   key={l.id}
                   onClick={() => scrollTo(l.id)}
-                  className={`text-left font-mono text-xs uppercase tracking-wider ${
-                    active === l.id ? "text-[#FF5722]" : "text-[#4B5563]"
+                  className={`w-full text-left font-mono text-xs uppercase tracking-wider py-3 px-3 rounded-md transition-colors active:bg-[#FF5722]/10 ${
+                    active === l.id ? "text-[#FF5722] bg-[#FF5722]/5" : "text-[#4B5563] hover:text-[#111827] hover:bg-gray-100"
                   }`}
                 >
                   {l.label}
