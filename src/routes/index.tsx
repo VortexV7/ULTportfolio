@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import ScrollToTop from "@/components/ScrollToTop";
 import SplashScreen from "@/components/SplashScreen";
-import socialPreviewUrl from "@/assets/og-thumbnail.svg?url";
+import socialPreviewUrl from "@/assets/og-thumbnailv1.jpg?url";
 import { siteConfig } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
