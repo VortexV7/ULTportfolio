@@ -31,16 +31,22 @@ export default function Navbar({ splash: _splash = false }: { splash?: boolean }
   }, []);
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    setOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      setOpen(false);
+    } else {
+      console.warn(`Element with id "${id}" not found`);
+    }
   };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#E5E7EB]">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <button
+          type="button"
           onClick={() => scrollTo("hero")}
-          className="font-sans font-bold text-base sm:text-lg flex items-center text-[#111827] truncate"
+          className="font-sans font-bold text-base sm:text-lg flex items-center text-[#111827] truncate cursor-pointer"
         >
           <motion.span
             layoutId="brand-name"
@@ -54,8 +60,9 @@ export default function Navbar({ splash: _splash = false }: { splash?: boolean }
           {links.map((l) => (
             <button
               key={l.id}
+              type="button"
               onClick={() => scrollTo(l.id)}
-              className={`font-mono text-xs uppercase tracking-wider transition-colors ${
+              className={`font-mono text-xs uppercase tracking-wider transition-colors cursor-pointer ${
                 active === l.id ? "text-[#FF5722]" : "text-[#4B5563] hover:text-[#111827]"
               }`}
             >
@@ -63,7 +70,13 @@ export default function Navbar({ splash: _splash = false }: { splash?: boolean }
             </button>
           ))}
         </div>
-        <button className="md:hidden text-[#111827]" onClick={() => setOpen(!open)} aria-label="menu">
+        <button 
+          type="button"
+          className="md:hidden text-[#111827] cursor-pointer p-2" 
+          onClick={() => setOpen(!open)} 
+          aria-label="menu"
+          aria-expanded={open}
+        >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
@@ -80,8 +93,9 @@ export default function Navbar({ splash: _splash = false }: { splash?: boolean }
               {links.map((l) => (
                 <button
                   key={l.id}
+                  type="button"
                   onClick={() => scrollTo(l.id)}
-                  className={`w-full text-left font-mono text-xs uppercase tracking-wider py-3 px-3 rounded-md transition-colors active:bg-[#FF5722]/10 ${
+                  className={`w-full text-left font-mono text-xs uppercase tracking-wider py-3 px-3 rounded-md transition-colors cursor-pointer ${
                     active === l.id ? "text-[#FF5722] bg-[#FF5722]/5" : "text-[#4B5563] hover:text-[#111827] hover:bg-gray-100"
                   }`}
                 >
