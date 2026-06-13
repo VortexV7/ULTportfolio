@@ -15,29 +15,53 @@ export default function Navbar({ splash: _splash = false }: { splash?: boolean }
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(e.target.id);
-        });
-      },
-      { rootMargin: "-40% 0px -55% 0px" }
-    );
-    links.forEach((l) => {
-      const el = document.getElementById(l.id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
+    // Retry observer setup after a small delay to ensure DOM elements exist
+    const setupObserver = () => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) setActive(e.target.id);
+          });
+        },
+        { rootMargin: "-40% 0px -55% 0px" }
+      );
+      
+      let observedCount = 0;
+      links.forEach((l) => {
+        const el = document.getElementById(l.id);
+        if (el) {
+          observer.observe(el);
+          observedCount++;
+        }
+      });
+      
+      // If elements weren't found, retry after a delay
+      if (observedCount === 0) {
+        setTimeout(setupObserver, 500);
+        return;
+      }
+      
+      return () => observer.disconnect();
+    };
+
+    const cleanup = setupObserver();
+    return () => cleanup?.();
   }, []);
 
   const scrollTo = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-      setOpen(false);
-    } else {
-      console.warn(`Element with id "${id}" not found`);
+    let element = document.getElementById(id);
+    if (!element) {
+      setTimeout(() => {
+        element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+          setOpen(false);
+        }
+      }, 100);
+      return;
     }
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+    setOpen(false);
   };
 
   return (
@@ -89,7 +113,7 @@ export default function Navbar({ splash: _splash = false }: { splash?: boolean }
             transition={{ duration: 0.2 }}
             className="md:hidden overflow-hidden border-t border-[#E5E7EB] bg-white"
           >
-            <div className="flex flex-col px-6 py-2">
+            <div className="flex flex-col px-6 py-2 gap-1">
               {links.map((l) => (
                 <button
                   key={l.id}
