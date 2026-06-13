@@ -12,8 +12,9 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import ScrollToTop from "@/components/ScrollToTop";
 import SplashScreen from "@/components/SplashScreen";
-import socialPreviewUrl from "@/assets/og-thumbnailv1.jpg?url";
 import { siteConfig } from "@/lib/site";
+
+const ogImageUrl = `${siteConfig.siteUrl}/og-thumbnailv1.jpg`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -22,10 +23,15 @@ export const Route = createFileRoute("/")({
       { name: "description", content: siteConfig.description },
       { property: "og:title", content: siteConfig.title },
       { property: "og:description", content: siteConfig.socialDescription },
-      { property: "og:image", content: socialPreviewUrl },
+      { property: "og:image", content: ogImageUrl },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/jpeg" },
+      { property: "og:url", content: siteConfig.siteUrl },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: siteConfig.title },
       { name: "twitter:description", content: siteConfig.socialDescription },
-      { name: "twitter:image", content: socialPreviewUrl },
+      { name: "twitter:image", content: ogImageUrl },
     ],
   }),
   component: Index,
