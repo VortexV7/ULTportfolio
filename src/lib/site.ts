@@ -1,5 +1,6 @@
 export const siteConfig = {
   name: "Ved Sharanagate",
+  siteUrl: "https://vedportfolio.vercel.app", // Update this to your actual domain
   title: "Ved Sharanagate | Full Stack Developer & ML Enthusiast",
   shortTitle: "Ved Sharanagate | Portfolio",
   description:
