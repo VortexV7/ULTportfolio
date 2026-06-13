@@ -13,7 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { siteConfig } from "../lib/site";
 import faviconUrl from "../assets/favicon.svg?url";
-import socialPreviewUrl from "../assets/og-thumbnail.svg?url";
+import socialPreviewUrl from "../assets/og-thumbnail.png";
 
 function NotFoundComponent() {
   return (
