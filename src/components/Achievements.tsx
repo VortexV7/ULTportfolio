@@ -14,7 +14,7 @@ const items: { title: string; desc: string; cat: Cat; date: string }[] = [
     title: "B.Tech Computer Engineering",
     desc: "Pursuing Computer Engineering with interests in web development, artificial intelligence, and software engineering.",
     cat: "ACADEMIC",
-    date: "2023–Present",
+    date: "2024–Present",
   },
   {
     title: "Developer Portfolio",
