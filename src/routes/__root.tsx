@@ -13,7 +13,6 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { siteConfig } from "../lib/site";
 import faviconUrl from "../assets/favicon.svg?url";
-import socialPreviewUrl from "../assets/og-thumbnail.png";
 
 function NotFoundComponent() {
   return (
@@ -90,12 +89,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: siteConfig.title },
       { property: "og:description", content: siteConfig.socialDescription },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: socialPreviewUrl },
+      { property: "og:image", content: "/og-thumbnail.jpg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { property: "og:image:alt", content: `${siteConfig.name} portfolio preview` },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: siteConfig.title },
       { name: "twitter:description", content: siteConfig.socialDescription },
-      { name: "twitter:image", content: socialPreviewUrl },
+      { name: "twitter:image", content: "/og-thumbnail.jpg" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
