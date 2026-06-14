@@ -14,7 +14,6 @@ export default function Navbar({ splash: _splash = false }: { splash?: boolean }
   const [active, setActive] = useState("");
   const [open, setOpen] = useState(false);
 
-  // Lock body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -60,6 +59,7 @@ export default function Navbar({ splash: _splash = false }: { splash?: boolean }
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#E5E7EB]">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+
           {/* Brand */}
           <button
             type="button"
@@ -85,42 +85,46 @@ export default function Navbar({ splash: _splash = false }: { splash?: boolean }
             ))}
           </div>
 
-          {/* Hamburger — sits above the overlay via z-[60] */}
-          <button
-            type="button"
-            className="md:hidden z-[60] relative text-[#111827] cursor-pointer p-2"
-            onClick={() => setOpen((prev) => !prev)}
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              {open ? (
-                <motion.span
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="block"
-                >
-                  <X size={22} />
-                </motion.span>
-              ) : (
-                <motion.span
-                  key="menu"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="block"
-                >
-                  <Menu size={22} />
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </button>
+          {/* Placeholder to keep brand centered on mobile */}
+          <div className="md:hidden w-10" />
+
         </div>
       </nav>
+
+      {/* Hamburger / Close — always floating above everything */}
+      <button
+        type="button"
+        className="md:hidden fixed top-3 right-4 z-[60] text-[#111827] cursor-pointer p-2 rounded-full bg-white/90 backdrop-blur shadow-sm border border-[#E5E7EB]"
+        onClick={() => setOpen((prev) => !prev)}
+        aria-label={open ? "Close menu" : "Open menu"}
+        aria-expanded={open}
+      >
+        <AnimatePresence mode="wait" initial={false}>
+          {open ? (
+            <motion.span
+              key="close"
+              initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+              animate={{ rotate: 0, opacity: 1, scale: 1 }}
+              exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
+              transition={{ duration: 0.2 }}
+              className="block"
+            >
+              <X size={20} />
+            </motion.span>
+          ) : (
+            <motion.span
+              key="menu"
+              initial={{ rotate: 90, opacity: 0, scale: 0.5 }}
+              animate={{ rotate: 0, opacity: 1, scale: 1 }}
+              exit={{ rotate: -90, opacity: 0, scale: 0.5 }}
+              transition={{ duration: 0.2 }}
+              className="block"
+            >
+              <Menu size={20} />
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </button>
 
       {/* Full-screen mobile overlay */}
       <AnimatePresence>
@@ -138,7 +142,6 @@ export default function Navbar({ splash: _splash = false }: { splash?: boolean }
 
             {/* Content */}
             <div className="flex flex-col flex-1 justify-center px-10">
-              {/* Nav items */}
               <nav className="flex flex-col gap-2">
                 {links.map((l, i) => (
                   <motion.div
@@ -153,12 +156,9 @@ export default function Navbar({ splash: _splash = false }: { splash?: boolean }
                       onClick={() => scrollTo(l.id)}
                       className="group w-full text-left flex items-center gap-4 py-4 border-b border-[#F3F4F6] cursor-pointer"
                     >
-                      {/* Index number */}
                       <span className="font-mono text-[10px] text-[#D1D5DB] w-5 shrink-0 group-hover:text-[#FF5722] transition-colors">
                         0{i + 1}
                       </span>
-
-                      {/* Label */}
                       <span
                         className={`font-sans text-3xl font-bold tracking-tight transition-colors ${
                           active === l.id
@@ -168,8 +168,6 @@ export default function Navbar({ splash: _splash = false }: { splash?: boolean }
                       >
                         {l.label}
                       </span>
-
-                      {/* Active dot */}
                       {active === l.id && (
                         <motion.span
                           layoutId="active-dot"
