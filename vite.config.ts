@@ -1,18 +1,55 @@
-// @lovable.dev/vite-tanstack-config already includes the following — do NOT add them manually
-// or the app will break with duplicate plugins:
-//   - tanstackStart, viteReact, tailwindcss, tsConfigPaths, nitro (build-only using cloudflare as a default target),
-//     componentTagger (dev-only), VITE_* env injection, @ path alias, React/TanStack dedupe,
-//     error logger plugins, and sandbox detection (port/host/strictPort).
-// You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
+import { nitro } from "nitro/vite";
+import { defineConfig, loadEnv, type PluginOption } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 
-export default defineConfig({
-  nitro: {
-    preset: "vercel",
-  },
-  tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
-    server: { entry: "server" },
-  },
+export default defineConfig(({ command, mode }) => {
+  const env = loadEnv(mode, process.cwd(), "VITE_");
+  const envDefine = Object.fromEntries(
+    Object.entries(env).map(([key, value]) => [`import.meta.env.${key}`, JSON.stringify(value)]),
+  );
+
+  const plugins: PluginOption[] = [
+    tailwindcss(),
+    tsconfigPaths({ projects: ["./tsconfig.json"] }),
+    tanstackStart({
+      importProtection: {
+        behavior: "error",
+        client: {
+          files: ["**/server/**"],
+          specifiers: ["server-only"],
+        },
+      },
+      server: { entry: "server" },
+    }),
+    react(),
+  ];
+
+  if (command === "build") {
+    plugins.splice(plugins.length - 1, 0, nitro({ preset: "vercel" }));
+  }
+
+  return {
+    define: envDefine,
+    resolve: {
+      alias: {
+        "@": `${process.cwd()}/src`,
+      },
+      dedupe: [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "react/jsx-dev-runtime",
+        "@tanstack/react-query",
+        "@tanstack/query-core",
+      ],
+    },
+    server: {
+      host: "::",
+      port: 8080,
+    },
+    plugins,
+  };
 });
