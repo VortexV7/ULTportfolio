@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Ved Sharanagate",
-  siteUrl: "https://vedsharanagate.vercel.app", // Update this to your actual domain
+  siteUrl: "https://vedsharanagate.vercel.app",
   title: "Ved Sharanagate | Full Stack Developer & AI Enthusiast",
   shortTitle: "Ved Sharanagate | Portfolio",
   description:
